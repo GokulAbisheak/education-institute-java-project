@@ -427,10 +427,13 @@ body{
   padding: 5px 10px;
   font-size: 12px;
   transition-duration: 300ms;
+  border: none;
+  width: 60px;
 }
 
 .editbtn{
   background-color: #4FBF26;
+  margin: 5px 0px;
 }
 
 .editbtn:hover{
@@ -438,6 +441,7 @@ body{
 }
 
 .deletebtn{
+  margin-bottom: 5px;
   background-color: #FF0000;
 }
 
@@ -647,4 +651,83 @@ body{
 	position: absolute;
 	right: 10%;
 	margin-top: 50px;
+}
+
+.addBackground .addusers input
+{
+	border: 1px solid #808080;
+}
+
+.addBackground .addusers input:focus
+{
+	outline: none;
+}
+
+.addBackground .addusers select
+{
+	border: 1px solid #808080;
+}
+
+.addBackground .addusers select:focus
+{
+	outline: none;
+}
+
+.profilebackground
+{
+	width: 80%;
+	margin: 50px auto;
+	box-shadow: 0px 0px 10px #808080;
+	text-align: center;
+	padding: 50px 0px;
+	background-image: url("../images/bluepattern.jpg");
+	background-size: 100% auto;
+}
+
+.profilebackground h1
+{
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.profilebackground input[type=submit]
+{
+	padding: 10px 20px;
+	background-color: #2C4EA3;
+	color: #FFFFFF;
+	border: 0px;
+	border-radius: 10px;
+	margin-top: 30px;
+	cursor: pointer;
+	box-shadow: 0px 0px 10px #808080;
+	transition-duration: 300ms;
+}
+
+.profilebackground input[type=submit]:hover
+{
+	background-color: #193882;
+}
+
+#proic
+{
+	margin-top: 9px;
+}
+
+.profileicon
+{
+	text-align: center;
+	font-size: 20px;
+	color: #2C4EA3;
+}
+
+.profilebackground .init
+{
+	background-color: #FFFFFF;
+	width: 30%;
+	padding: 12px 0px;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+	border-radius: 20px;
+	box-shadow: 0px 0px 10px #808080;
 }

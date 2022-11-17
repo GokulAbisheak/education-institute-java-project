@@ -1,3 +1,6 @@
+<%@page import="com.konoha.usermanagement.*"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -9,6 +12,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="JavaScript\javascript.js"></script>
+    
+    <% 
+			session = request.getSession();  
+		
+			if(session.getAttribute("UserType") != null)
+			{
+				String usertype = (String)session.getAttribute("UserType");
+				
+				if(usertype.equals("Admin")){  
+					System.out.println("access granted");
+					
+				} else {
+					%>
+					 <script>
+					 	alert("Need a valid Admin account to access this page");
+					 	history.back();
+					 </script>
+					 <%
+				}
+			}
+			else {
+				%>
+				 <script>
+				 	alert("You need to login first");
+				 	window.location.href = "login.jsp";
+				 </script>
+				 <%
+			}
+		%>
+    
 </head>
 <body>
 	<!-- header -->
@@ -23,42 +56,36 @@
         <th>Year</th>
         <th>Semester</th>
         <th></th>
+        
+        <%
+       		StudentDBUtil student = new StudentDBUtil();
+			ArrayList<Student> arraylist = StudentDBUtil.getAllStudents();
+		
+			for(Student s1 : arraylist){
+        
+        %>
         <tr>
-          <td>IT21375132</td>
-          <td>Gokul</td>
-          <td>FOC</td>
-          <td>200116400023</td>
-          <td>2</td>
-          <td>1</td>
+          <td><%=s1.getId() %></td>
+          <td><%=s1.getName() %></td>
+          <td><%=s1.getFaculty() %></td>
+          <td><%=s1.getNic() %></td>
+          <td><%=s1.getYear() %></td>
+          <td><%=s1.getSemester() %></td>
           <td>
-            <a href="#edit" class="editbtn">Edit</a>
-            <a href="#delete" class="deletebtn">Delete</a>
+            <form method="POST" action="StudentGetUpdate">
+				<input type="hidden" name="id" value="<%=s1.getId()%>"/>
+				<input class="editbtn" type="submit" value= "Edit" /> 
+			</form>
+		
+			<form method="POST" action="StudentDelete">
+				<input type="hidden" name="id" value="<%=s1.getId()%>"/>
+				<input class="deletebtn" type="submit" value= "Delete" /> 
+			</form>
           </td>
         </tr>
-        <tr>
-          <td>IT21375132</td>
-          <td>Gokul</td>
-          <td>FOC</td>
-          <td>200116400023</td>
-          <td>2</td>
-          <td>1</td>
-          <td>
-            <a href="#edit" class="editbtn">Edit</a>
-            <a href="#delete" class="deletebtn">Delete</a>
-          </td>
-        </tr>
-        <tr>
-          <td>IT21375132</td>
-          <td>Gokul</td>
-          <td>FOC</td>
-          <td>200116400023</td>
-          <td>2</td>
-          <td>1</td>
-          <td>
-            <a href="#edit" class="editbtn">Edit</a>
-            <a href="#delete" class="deletebtn">Delete</a>
-          </td>
-        </tr>
+        <%
+        	} 
+        %>
       </table>
      </div>
 </body>

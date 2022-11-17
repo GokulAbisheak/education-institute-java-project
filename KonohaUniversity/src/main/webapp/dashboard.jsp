@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    
+   
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +13,36 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
       <link rel="stylesheet" href="CSS/style.css">
       <script src="JavaScript\javascript.js"></script>
+      
+       <% 
+			session = request.getSession();  
+		
+			if(session.getAttribute("UserType") != null)
+			{
+				String usertype = (String)session.getAttribute("UserType");
+				
+				if(usertype.equals("Student")){  
+					System.out.println("access granted");
+					
+				} else {
+					%>
+					 <script>
+					 	alert("Need a valid Student account to access this page");
+					 	history.back();
+					 </script>
+					 <%
+				}
+			}
+			else {
+				%>
+				 <script>
+				 	alert("You need to login first");
+				 	window.location.href = "login.jsp";
+				 </script>
+				 <%
+			}
+		%>
+      
 </head>
 <body>
 	<!-- header -->
@@ -24,8 +58,8 @@
     <div id="focdiv">
       <h1 class="facultytxt">FOC - Faculty of Computing</h1>
       <div class="selectyear">
-        <button class="facultybtn">1st Year</button>
-        <button class="facultybtn">2nd Year</button>
+        <a href="focy1.jsp"><button class="facultybtn">1st Year</button></a>
+        <a href="focy2.jsp"><button class="facultybtn">2nd Year</button></a>
         <button class="facultybtn">3rd Year</button>
         <button class="facultybtn">4th Year</button>
         <button class="facultybtn">Post Graduate</button>
